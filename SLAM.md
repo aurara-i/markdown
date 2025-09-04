@@ -77,32 +77,32 @@
 Linux 目录结构的设计遵循“功能分离”原则：系统文件与用户文件分离、静态文件（如程序）与动态文件（如日志）分离、必需文件与可选文件分离。理解这些目录的作用，能帮助你快速定位文件、排查问题（如日志在 `/var/log`，配置在 `/etc`），是使用 Linux 的基础。
 ## linux中ubuntu安装软件操作
 ### 通过APT安装包安装
-sudo apt update
-sudo apt install firefox
-sudo apt remove firefox
-sudo apt upgrade  # 升级所有可更新的软件
-sudo apt upgrade firefox  # 仅升级指定软件
-apt search [关键词]  # 例如查找 "编辑器" 相关软件：apt search editor
+- sudo apt update
+- sudo apt install firefox
+- sudo apt remove firefox
+- sudo apt upgrade  # 升级所有可更新的软件
+- sudo apt upgrade firefox  # 仅升级指定软件
+- apt search [关键词]  # 例如查找 "编辑器" 相关软件：apt search editor
 ### 源码编译安装
 安装编译工具（首次编译需执行）：
-bash
-sudo apt install build-essential  # 包含 gcc、make 等基础编译工具
+- bash
+- sudo apt install build-essential  # 包含 gcc、make 等基础编译工具
 下载并解压源码包：
 例如下载 example-1.0.tar.gz 后，在终端解压：
-bash
-tar -zxvf example-1.0.tar.gz  # 解压 gz 格式
-cd example-1.0  # 进入解压后的目录
+- bash
+- tar -zxvf example-1.0.tar.gz  # 解压 gz 格式
+- cd example-1.0  # 进入解压后的目录
 配置编译参数：
 大多数源码包会提供 configure 脚本，用于检查依赖并生成 Makefile：
-bash
+- bash
 ./configure  # 可添加参数，如指定安装路径：./configure --prefix=/usr/local
 编译源码：
-bash
-make  # 编译过程可能耗时，取决于软件复杂度
+- bash
+- make  # 编译过程可能耗时，取决于软件复杂度
 安装编译好的软件：
-bash
-sudo make install
+- bash
+- sudo make install
 卸载源码安装的软件（需在源码目录执行）：
-bash
-sudo make uninstall
+- bash
+- sudo make uninstall
 
