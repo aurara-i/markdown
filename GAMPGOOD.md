@@ -3,7 +3,7 @@
 遇见问题：
 
 ![](file://C:\Users\admin\Documents\IkMarkdown/.assets/spp.md876.2432123.png)
-
+![](https://github.com/aurara-i/markdown/blob/main/picture/1.png)
 因为没有配置第三方库和站点列表的原因，首次运行并不成功，进入到mainDir的目录下，将dataset_Win目录下的thirdparty_Win目录和所有站点列表都拷贝到mainDir目录下。
 
 ![](file://C:\Users\admin\Documents\IkMarkdown/.assets/spp.md939.2240338.png)
