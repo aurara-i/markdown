@@ -159,9 +159,21 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
  ####  状态估计误差：下标 (k|k-1) 的含义是k 时刻的状态，基于k-1 时刻的信息进行估计”。因为 k-1 时刻时，k 时刻还未到来，只能预测未来（用过去的信息猜未来的状态），所以用 “(k|k-1)” 明确 “估计的时间逻辑”——“基于过去，估计未来”。而观测估计误差下标 k 的含义是 “k 时刻的观测”。因为观测 (z_k) 是k 时刻实时获取的测量值（比如 GPS 在 k 时刻的读数），误差直接对应 “当前时刻（k）的观测”，所以用简洁的 k 表示 “这是 k 时刻的观测相关误差”。
 ![](https://github.com/aurara-i/markdown/blob/main/picture/8.png)
 
-
-
-
+## CMAKE基础
+ - 这确实是我第一次真正生成Cmake。值的记录！！
+  - 在CMakeLists.txt中写
+  - **` cmake_minimum_required(VERSION 3.10)#声明的要求最低版本CMake `**
+  - **` project(Untitled-1)#声明工程 `**
+  - **` add_executable(Untitled-1 Untitled-1.cpp)#添加可执行程序（程序名 源代码文件）`**
+   - 然后在终端输入cmake . 就会生成一些中间文件。
+   - 再输入make进行编译
+ - 编译成功后输入：./Untitled-1 可执行程序就能够执行了,输出helllo slam!
+ - 所以如果想要新增一个可执行文件，只需要再添加一行就行。
+ - 我们希望生成的中间文件不要放在代码目录中，新建一个build目录然后进行Cmake和make
+ -  **如何生成库**
+ - 我们自己生成库，在cmakelist.txt中增加：add_library( .cpp),然后和上面一样cmake编译就行。生成的.a文件就是想要的库。
+ - 还需要一个头文件才能够调用库。头文件包括宏定义和函数名
+ - 然后在cmakelist中增加可执行程序的生成命令连接到库上，target_link_libraries()
 
 
 
