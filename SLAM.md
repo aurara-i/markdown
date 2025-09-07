@@ -185,13 +185,32 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
 - **旋转矩阵（方向余弦矩阵）** R12 表示把坐标系2的向量变换到1中。求逆表示反向的旋转。
 
 - 如图，旋转矩阵来源。
-- 对于旋转矩阵的实践，我们主要使用EIGEIN库进行矩阵的计算。这个库是由纯头文件构成，无需连接库文件，只需引入头文件即可。
+- 对于**旋转矩阵的实践**，我们主要使用EIGEIN库进行矩阵的计算。这个库是由纯头文件构成，无需连接库文件，只需引入头文件即可。
+- **Eigien库的使用**
 - 所以在CMakeLists.txt中 include_directories( "/usr/include/eigen3" )
-    可以省略的情况：
+    -- **可以省略的情况：**
     Eigen 是纯头文件库，若其安装路径在系统默认的头文件搜索路径中（如 Linux 的/usr/include、/usr/local/include，或通过包管理器安装时自动配置的路径），CMake 会自动找到它，无需手动指定。
-    必须保留的情况：
+    -- **必须保留的情况：**
     若 Eigen 安装在非默认路径（如自定义目录、Windows 系统中手动解压的路径），则必须通过这行指定头文件位置，否则编译时会提示 “找不到 Eigen 头文件”。
-- 
+- `Eigein::Matrix<double ,3 ,3> Matrix3d;`//三维矩阵原始定义
+- `Eigein::Matrix3d matrix3d=Eigein::Matrix3d::Zero()`//内置的三维矩阵直接调用，可初始化为0
+- `Eigein::Matrix<double,Eigein::Dynamic,Eigein::Dynamic> Matrixnd`//矩阵大小动态设置
+- `matrix3d=1,2,3,4,5,6,7,8,9;`//三维矩阵初始化
+- `cout<<matrix3d;`//进行输出
+- `for（int i=0；i<3;i++） for(int j=0;j<3;j++) cout<<matrix3d(i,j)`//访问特定元素
+- `.transpose 转置 .trace 迹 .inverse 逆 .determinant行列式`
+- `Eigen::SelfAdjointEigenSolver<Eigen::Matrix3d> eigen_solver ( matrix_33.transpose()*matrix_33 );`//使用 Eigen 库中的SelfAdjointEigenSolver类来求解一个 3x3 矩阵的特征值和特征向量
+    - matrix_33.transpose() * matrix_33
+    对原始矩阵matrix_33做转置（.transpose()）后，再与自身相乘。
+    数学意义：这样得到的新矩阵一定是对称矩阵（满足A^T = A），且是半正定的（特征值非负）。
+    - Eigen::SelfAdjointEigenSolver<...>
+    这是 Eigen 中专门用于求解对称矩阵特征值和特征向量的工具类（SelfAdjoint表示 “自伴随”，即对称矩阵）。
+    - `eigen_solver`
+    是实例化的求解器对象，通过它可以获取计算出的特征值和特征向量。
+ - 解方程
+    - 直接求逆
+    - 史密特正交化`x = matrix_NN.colPivHouseholderQr().solve(v_Nd);`
+-** **
 
 
 
