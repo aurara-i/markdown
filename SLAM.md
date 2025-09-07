@@ -210,7 +210,8 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
  - 解方程
     - 直接求逆
     - 史密特正交化`x = matrix_NN.colPivHouseholderQr().solve(v_Nd);`
--** **
+ -**旋转向量与欧拉角**
+
 
 
 
