@@ -240,7 +240,30 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
  - 相似变换：旋转、平移、缩放
  - 仿射变换：旋转矩阵不要求正交
  - **Eigein库中旋转的使用**
- - **可视化演示**
+   - 在 Eigen 中，**AngleAngleAxis** 是一种专门用于表示旋转向量的类，它的底层实现不是矩阵，而是直接存储了 “旋转角度” 和 “旋转轴方向” 这两个核心信息。
+   - ` Eigen::AngleAxisd rotation_vector ( M_PI/4, Eigen::Vector3d ( 0,0,1 ) );`
+   -  **旋转向量 转 旋转矩阵**
+   - `cout<<"rotation matrix =\n"<<rotation_vector.matrix() <<endl;` //直接转为矩阵
+   - 也可以`rotation_matrix = rotation_vector.toRotationMatrix();`//或者用这个函数
+   - **旋转矩阵 转 欧拉角**
+   - `Eigen::Vector3d euler_angles = rotation_matrix.eulerAngles ( 2,1,0 ); // ZYX顺序，即roll pitch yaw顺序`
+   - **用旋转向量和旋转矩阵进行坐标变换**
+   -  `::Vector3d v ( 1,0,0 );`
+   -  `Eigen::Vector3d v_rotated = rotation_vector * v;`
+   -  `v_rotated = rotation_matrix * v;`
+   -  **欧式变换矩阵**
+   -  `Eigen::Isometry3d T = Eigen::Isometry3d::Identity();`
+   -  `Isometry3d 是 Eigen 中专门用于表示三维欧氏变换的类（“Isometry” 意为 “等距变换”，即保距变换）。虽然名字带 “3d”，但内部存储的是 4×4 矩阵（因为需要包含平移部分）。`
+   -  `T.rotate(rotation_vector);  // 应用之前定义的旋转向量（绕Z轴转45°）`
+   -  `T.pretranslate(Eigen::Vector3d(1,3,4));  // 平移向量 t = (1,3,4)`
+   -  也可以直接`Eigen::Vector3d v_transformed = T * v;  // v 是初始向量 (1,0,0)`
+   -  这里的 * 运算符是 Eigen 重载的欧氏变换操作，等价于数学上的：vtransformed​=R⋅v+t
+即 “先对向量 v 应用旋转 R，再加上平移 t”。
+   -  **四元数**
+   - `Eigen::Quaterniond q = Eigen::Quaterniond(rotation_vector);`
+   - `q = Eigen::Quaterniond(rotation_matrix);`
+   - `v_rotated = q * v;  // 数学上等价于 q·v·q⁻¹`//用四元数旋转一个矩阵
+  - **可视化演示**
 
  
 
