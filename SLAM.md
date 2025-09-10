@@ -254,7 +254,7 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
    -  **欧式变换矩阵**
    -  `Eigen::Isometry3d T = Eigen::Isometry3d::Identity();`
    -  `Isometry3d 是 Eigen 中专门用于表示三维欧氏变换的类（“Isometry” 意为 “等距变换”，即保距变换）。虽然名字带 “3d”，但内部存储的是 4×4 矩阵（因为需要包含平移部分）。`
-   -  `T.rotate(rotation_vector);  // 应用之前定义的旋转向量（绕Z轴转45°）`
+   -  `T.rotate(rotation_vector);  // 应用之前定义的旋转向量，当然，这里换成其他旋转的表达也是ok的`
    -  `T.pretranslate(Eigen::Vector3d(1,3,4));  // 平移向量 t = (1,3,4)`
    -  也可以直接`Eigen::Vector3d v_transformed = T * v;  // v 是初始向量 (1,0,0)`
    -  这里的 * 运算符是 Eigen 重载的欧氏变换操作，等价于数学上的：vtransformed​=R⋅v+t
@@ -264,6 +264,7 @@ Linux 目录结构的设计遵循“功能分离”原则：系统文件与用�
    - `q = Eigen::Quaterniond(rotation_matrix);`
    - `v_rotated = q * v;  // 数学上等价于 q·v·q⁻¹`//用四元数旋转一个矩阵
   - **可视化演示**
+  - 
 
  
 
