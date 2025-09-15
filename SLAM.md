@@ -298,6 +298,34 @@ SO(3)={R∈R3×3∣RTR=I,det(R)=1}
 <br>**RGB-D相机模型**主要原理：1、红外结构光：根据返回的结构光图案，计算距离。2、飞行时间原理：发送返回光束飞行时间。<br>
 <br>**图像**在灰度图中每个像素位置对应着一个灰度值，一般来说图像是以二维数组的形式存储。第一个表示行，对应图像的高度，对应着Y轴，第二个表示列，对应图像宽度，对应着X轴。这里方向不要弄混。<br>
 <br>**OPENCV实践**<br>
+  - Opencv库的安装，在https://opencv.org/releases/网址中下载需要的版本即可，依旧利用上述cmake编译的过程进行编译即可，需要注意的是提前安装好Opencv的依赖项。还要利用sudo make install进行安装到机器上。
+  - **利用opencv对图像进行处理**
+    - #include <chrono> C++ 标准时间库（chrono），用于精确计算代码执行时间（比如后续遍历图像的耗时统计）。
+    - cv::Mat image;OpenCV 中存储图像的数据结构（类似 “图像矩阵”），可理解为 “容器”，用来存放像素数据、图像尺寸、通道数等信息；image是变量名，此时还未赋值
+    - image = cv::imread ( argv[1] ); //cv::imread函数读取指定路径下的图像
+    - // 文件顺利读取, 首先输出一些基本信息:cout<<"图像宽为"<<image.cols<<",高为"<<image.rows<<",通道数为"<<image.channels()<<endl;
+    - cv::imshow ( "image", image );      // 用cv::imshow显示图像
+    - cv::waitKey ( 0 );                  // 暂停程序,等待一个按键输入
+    - **cv拷贝机制**
+    - cv::Mat的浅拷贝（重点特性）：
+    <br>直接用=赋值时，image_another并不会复制image的像素数据，而是和image共享同一块内存（相当于 “起别名”）。
+    此时修改image_another的像素，image的像素也会跟着变（因为内存是共享的）。<br>// 修改 image_another 会导致 image 发生变化image_another ( cv::Rect ( 0,0,100,100 ) ).setTo ( 0 ); <br>// 将左上角100*100的块置零<br>cv::Rect(x, y, width, height)：创建一个矩形区域，参数分别是 “左上角 x 坐标、左上角 y 坐标、宽度、高度”，image_another(Rect(...))：获取image_another中矩形区域的子图像（依然是浅拷贝，共享内存）
+    - cv::Mat::clone()：深拷贝函数
+    <br>// 使用clone函数来拷贝数据
+    <br>cv::Mat image_clone = image.clone();
+    <br>深拷贝函数，会创建一个新的cv::Mat对象，并复制image的所有像素数据（内存不共享，是完全独立的副本）。
+此时修改image_clone，image不会受到任何影响。
+    - 遍历所有元素
+      <br>循环的核心是 “逐行、逐列、逐通道” 遍历图像的所有像素，本质是通过 “指针操作” 高效访问图像在内存中的原始数据。
+       
+
+
+
+
+
+
+
+
 
 
 
