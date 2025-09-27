@@ -16,3 +16,6 @@
   2. P 文件（Precise File，精密产品文件）就是N文件
 
   * **核心作用** ：存储精密轨道、钟差等辅助数据，用于提高定位精度。**格式** ：多为 SP3（Standard Product 3）格式（轨道，后缀 `.sp3`）或 RINEX 钟差格式（后缀 `.clk`），例如 `igs21001.sp3`（IGS 精密轨道）、`gfz21001.clk`（GFZ 精密钟差）
+
+cd /opt/zotero
+./zotero
