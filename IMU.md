@@ -1,3 +1,11 @@
+<img width="449" height="286" alt="图片" src="https://github.com/user-attachments/assets/a3201deb-09cd-4c27-ab57-860a93baea41" />
+<img width="355" height="526" alt="图片" src="https://github.com/user-attachments/assets/37ede905-7fa7-4a87-982f-6da2ece780fb" />
+<img width="286" height="132" alt="图片" src="https://github.com/user-attachments/assets/34a92a9b-f807-41b4-aceb-4ec6d0806aca" />
+<img width="634" height="186" alt="图片" src="https://github.com/user-attachments/assets/3e4433c8-8180-4625-b364-b15b97dcf916" />
+
+
+
+
 **惯性导航原理与算法设计**
 <br>导航系统包括：导航器件（原始观测数据）导航算法（导航参数）辅助支持设备
 <br>直接定位包括：几何交汇定位，数据库匹配定位
