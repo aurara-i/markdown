@@ -170,8 +170,13 @@ gtrue，它指向地心。但是人和惯导系统感受到的“有效重力”
 数据，据此估计 INS 误差、惯性传感器误差和 GNSS 接收机的时钟偏差与漂移。因此，紧组合是 INS 与 GNSS 在原始观测域的组合，组合层次比松组合更深。
 <br>··卡尔曼滤波，卡尔曼滤波是实现松组合信息融合的算法核心。根据 INS 的动态方程预测系统状态，根据 GNSS 的观测结果修正状态误差。
 <br><img width="732" height="536" alt="图片" src="https://github.com/user-attachments/assets/b0675c8f-1db9-48ba-91f6-f379b0fb8837" />
+<img width="461" height="614" alt="图片" src="https://github.com/user-attachments/assets/2dbc84c7-5869-4b16-ab09-b0ac89cb03f5" />
+<img width="632" height="188" alt="图片" src="https://github.com/user-attachments/assets/56f72a80-a89e-4201-b963-47ecd799c88a" />
+<img width="547" height="327" alt="图片" src="https://github.com/user-attachments/assets/c9350cbe-a285-4abe-9656-d4bdd1b9e3be" />
 
-<br>
+<br>F 阵和 H 阵都是根据系统模型“直接构造出来的”，而不是实时计算或拟合出来的。F 阵 —— 系统模型定义的它来自 INS误差方程的线性化结果； 是固定的数学模型，不是观测值求出来的；H 阵 —— 观测模型定义的它告诉滤波器“测量量与误差状态之间的关系”；形式一般是固定的，只与测量类型有关。
+
+
 
 
 
