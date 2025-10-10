@@ -414,11 +414,20 @@ SO(3)={R∈R3×3∣RTR=I,det(R)=1}
 - **特征点法**：特征点由关键点（图像中具有明显区分度的点，容易被检测和重复定位。）和描述子(用于描述特征点周围图像区域的数值向量。)两部分组成。
     - ORB特征：Oriented FAST and Rotated BRIEF  ，把 FAST 角点检测 和 BRIEF 描述子 结合起来，并加上了方向信息和旋转不变性改进。
     - (1) 特征点检测 —— FAST 。比较像素亮度之间的差异，和相邻像素差异大的认为是特征点。利用图像金字塔解决尺度不变性的问题。旋转方向，通过计算特征点附近灰度质心，几何中心和质心之间连线获得方向。
+    - 为什么FAST检测的是一个圆环而不是一个完整圆？1、但 FAST 的目标就是：
+“Features from Accelerated Segment Test”——强调的是 Accelerated（加速）。
+所以它只选择：半径固定（比如 3 像素）；离中心点等距离的 16 个像素；这些像素的相对位置是固定的，可以预先计算好坐标偏移；比较亮度差异只需要 16 次简单比较 ➝ 极快。2、圆环正好起到了“多方向采样”的作用。3、
+
     - 改进版FAST (Features from Accelerated Segment Test)：一种非常快速的角点检测方法。ORB 在 FAST 基础上加了 Harris 角点评分，选出更稳定的点。再加上 方向信息（Oriented），即给每个角点估计一个主方向，使它能抵抗旋转。
-    - (2) 描述子 —— 旋转不变的 BRIEF。在特征点邻域里随机挑像素对，比较它们的灰度大小，把结果编码成 0/1。
+    - (2) 描述子 —— 旋转不变的 BRIEF。描述子是一个 对关键点周围局部区域外观的数学描述。在特征点邻域里随机挑像素对，比较它们的灰度大小，把结果编码成 0/1。
     - BRIEF (Binary Robust Independent Elementary Features)：通过在特征点邻域做简单的像素对比，得到一串二进制描述子。匹配时只需计算汉明距离，速度非常快。ORB 对 BRIEF 进行了改进：加入旋转校正（Rotated），使其在图像旋转时仍然稳定。
 - **计算相机运动**
     - <img width="707" height="247" alt="图片" src="https://github.com/user-attachments/assets/be1b5a73-bdee-4f6a-bc70-f01def7f375f" />
+    - <img width="439" height="213" alt="图片" src="https://github.com/user-attachments/assets/afe056e4-157e-4c3f-ba95-a447fef3513e" />
+    <img width="377" height="212" alt="图片" src="https://github.com/user-attachments/assets/dd39794a-5490-497d-8bd1-1206f23d17a6" />
+    - 两个匹配点的对极约束
+
+
  
 
 
