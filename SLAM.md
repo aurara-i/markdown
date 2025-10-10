@@ -423,9 +423,22 @@ SO(3)={R∈R3×3∣RTR=I,det(R)=1}
     - BRIEF (Binary Robust Independent Elementary Features)：通过在特征点邻域做简单的像素对比，得到一串二进制描述子。匹配时只需计算汉明距离，速度非常快。ORB 对 BRIEF 进行了改进：加入旋转校正（Rotated），使其在图像旋转时仍然稳定。
 - **计算相机运动**
     - <img width="707" height="247" alt="图片" src="https://github.com/user-attachments/assets/be1b5a73-bdee-4f6a-bc70-f01def7f375f" />
+    <br> 两点之间**1.对极约束**
+    - 1、几何图片：左右两个相机中心点O，观测目标P点：
     - <img width="439" height="213" alt="图片" src="https://github.com/user-attachments/assets/afe056e4-157e-4c3f-ba95-a447fef3513e" />
-    <img width="377" height="212" alt="图片" src="https://github.com/user-attachments/assets/dd39794a-5490-497d-8bd1-1206f23d17a6" />
-    - 两个匹配点的对极约束
+    - 2、进行归一化相平面坐标：去除相机内参的影响（减去坐标原点并处以深度）：
+    - <img width="377" height="212" alt="图片" src="https://github.com/user-attachments/assets/dd39794a-5490-497d-8bd1-1206f23d17a6" /><br>
+    - 3、推导对极约束公式
+    - 三维点X在两个相机坐标系中的位置关系是：X2=R X1+t。都移到一侧，t,Rx1,x2三个向量共面。
+如果三个向量共面，那么它们的混合积（triple product）为 0：x2T[t]×Rx1=0。E=[t]×R称为 本质矩阵（Essential Matrix）于是对极约束就变成非常简洁的一句：x2TEx1=0。
+      <br>所以相机位姿估计变成：1、求E、F2、根据EF求R\t。由于旋转和平移各有3个自由度，所以E共有6个自由度，由于尺度等价性，所以只有5个自由度。尺度等价性:对极约束是等式为0的约束，乘以任意常数依旧为0.因此虽然可以用5个点对进行计算，但是我们常用八点法。
+      <br>通过过八个公式解出本质矩阵E，通过奇异值分解恢复相机的运动R、t。
+   <br>**2.三角测量**
+     - 完成对极约束后，通过三角测量恢复图像深度Z。
+     - 3D-2D**PNP**
+     - 
+
+
 
 
  
