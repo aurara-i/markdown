@@ -29,5 +29,17 @@ VINS-Mono 是一个实时的单目视觉惯性 SLAM 框架，采用基于优化�
 高效 IMU 预积分 + 零偏校正、自动初始化、在线外参标定、失败检测与恢复、回环检测与全局位姿图优化、地图合并与复用、在线时间标定、支持滚动快门相机
 主要用于无人机的状态估计与反馈控制，也可用于增强现实（AR）定位。代码运行于 Linux，并与 ROS 完全集成。
 
-
+**编译**
+由于我的eigein库是3.4的，所以重新安装了地版本的矩阵库，然后编译ceres库1.1.14库，然后才能够成功运行。
+<img width="696" height="264" alt="图片" src="https://github.com/user-attachments/assets/6ecc08c2-cbdf-4c27-9c55-5076b9216933" />
+按照readme进行安装即可
+需要：
+1、播放bag包  rosbag play YOUR_PATH_TO_DATASET/MH_01_easy.bag 
+2、播放   roslaunch vins_estimator euroc.launch （yan@yan-Inspiron-15-5510:~/Vins$ roslaunch vins_estimator euroc.launch）
+这一步会启动 VINS-Mono 的主要算法，包括：
+图像特征跟踪、IMU 融合、位姿估计、回环检测（loop closure）
+3、播放   roslaunch vins_estimator vins_rviz.launch （运行 rviz -d /home/yan/Vins/src/VINS-Mono-master/config/vins_rviz_config.rviz）这一步只是打开可视化界面，用于查看 VINS 的运行结果，比如轨迹、特征点、回环、坐标系等。
+<img width="1392" height="876" alt="图片" src="https://github.com/user-attachments/assets/b2601aa3-d881-46d5-a577-e751172ae2dc" />
+<img width="1375" height="774" alt="图片" src="https://github.com/user-attachments/assets/5c62fac7-5fc8-47b3-8ce4-f6af1ddb80b1" />
+⚠️ 注意：RViz 只是用来“看结果”，VINS 算法本身是在 euroc.launch 里运行的。
 
