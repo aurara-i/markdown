@@ -42,4 +42,10 @@ VINS-Mono 是一个实时的单目视觉惯性 SLAM 框架，采用基于优化�
 <img width="1392" height="876" alt="图片" src="https://github.com/user-attachments/assets/b2601aa3-d881-46d5-a577-e751172ae2dc" />
 <img width="1375" height="774" alt="图片" src="https://github.com/user-attachments/assets/5c62fac7-5fc8-47b3-8ce4-f6af1ddb80b1" />
 ⚠️ 注意：RViz 只是用来“看结果”，VINS 算法本身是在 euroc.launch 里运行的。
+左上角和中间上方是 tracked_image、loop_match_image，说明特征点跟踪和回环检测在正常工作；
+右边的 3D 视图里有绿色轨迹线和红色轨迹线，分别对应：
+🟩 绿色：VINS 估计的轨迹
+🟥 红色：回环检测到的闭环位置（pose graph）
+轨迹有回环闭合的形状，代表系统正在进行位姿图优化（pose graph optimization）。
+
 
