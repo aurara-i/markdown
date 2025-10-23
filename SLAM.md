@@ -382,7 +382,7 @@ SO(3)={R∈R3×3∣RTR=I,det(R)=1}
 <img width="582" height="539" alt="图片" src="https://github.com/user-attachments/assets/094a911d-8055-412a-8d4e-032175510732" />
 <img width="1" height="1" alt="图片" src="https://github.com/user-attachments/assets/f347d3fc-7f93-4a7b-839a-3c1518231919" />
 
-   - **高斯牛顿法**（专门用于解决非线性最小二乘问题）先线性化残差，再对线性化后的残差平方求导
+   - **高斯牛顿法**（专门用于解决非线性最小二乘问题）先线性化残差，再对线性化后的残差平方求导。对 f(x) 线性化，再代回 𝐹(𝑥)=12∥𝑓(𝑥)∥2，从而间接获得一个近似的二次模型。
    - https://i-blog.csdnimg.cn/direct/61adda3ac98d40b4a0c1ec73bab704ee.png
    - 避免了牛顿法中H阵的大量计算，但是增量过大时容易不收敛。
    - **列文伯格-马夸尔特方法（LM算法）**(当相信局部二次近似是准确的时，就更像高斯-牛顿法（追求速度）；当不相信时，就退化成更稳健的梯度下降法（保证收敛）。)
